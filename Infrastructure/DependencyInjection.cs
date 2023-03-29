@@ -49,13 +49,13 @@ namespace Infrastructure
 
 
             // Add authorization policies
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("admin", policy =>
-                    policy.RequireRole("admin"));
-                options.AddPolicy("operator", policy =>
-                    policy.RequireRole("operator"));
-            });
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("admin", policy =>
+            //        policy.RequireRole("admin"));
+            //    options.AddPolicy("operator", policy =>
+            //        policy.RequireRole("operator"));
+            //});
 
 
             // Register UserManager<User> service

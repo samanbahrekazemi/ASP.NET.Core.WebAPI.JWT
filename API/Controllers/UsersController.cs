@@ -16,14 +16,14 @@ namespace API.Controllers
             _userService = userService;
         }
 
-        [HttpPost("")]
+        [HttpGet("")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllUsersForAdminAsync()
         {
             return Ok(await _userService.GetAllUsersAsync());
         }
 
-        [HttpPost("GetAll")]
+        [HttpGet("GetAll")]
         [AllowAnonymous]
         public async Task<IActionResult> GetAllUsersAsync()
         {

@@ -29,7 +29,7 @@ namespace API.Helpers
             }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(signingKey));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             return new JwtSecurityToken(
                 issuer: issuer,

@@ -2,15 +2,12 @@
 using API.Settings;
 using Application.DTOs;
 using Domain.Entities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using Presentation.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 
 namespace API.Controllers
 {
@@ -18,18 +15,16 @@ namespace API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly IConfiguration _config;
         private readonly UserManager<User> _userManager;
         private readonly JwtSettings _jwtSettings;
-        public AccountController(IOptions<JwtSettings> jwtSettings, IConfiguration config, UserManager<User> userManager)
+        public AccountController(IOptions<JwtSettings> jwtSettings,  UserManager<User> userManager)
         {
-            _config = config;
             _userManager = userManager;
             _jwtSettings = jwtSettings.Value;
         }
 
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody] UserLoginDTO model)
         {
             var user = await _userManager.FindByNameAsync(model.UserName);
