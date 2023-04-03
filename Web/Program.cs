@@ -4,7 +4,9 @@ IConfiguration config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true).Build();
 
 // Register services
-builder.Services.AddGlobals(config);
+builder.Services
+    .AddPresentation(config)
+    .AddGlobals(config);
 
 var app = builder.Build();
 

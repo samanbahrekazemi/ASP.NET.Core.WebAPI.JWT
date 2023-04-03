@@ -46,11 +46,13 @@ if (app.Environment.IsDevelopment())
 
     using var scope = app.Services.CreateScope();
     var services = scope.ServiceProvider;
+    var dbContext = services.GetRequiredService<IApplicationDbContext>();
     var userManager = services.GetRequiredService<UserManager<User>>();
     var roleManager = services.GetRequiredService<RoleManager<Role>>();
     var logger = services.GetRequiredService<ILogger<DataSeeder>>();
     var dataSeeder = new DataSeeder(logger);
     await dataSeeder.SeedUserRolesAsync(roleManager, userManager);
+    await dataSeeder.SeedProductsAsync(dbContext);
 }
 
 
