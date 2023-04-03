@@ -69,6 +69,7 @@ namespace Infrastructure
                         new Category { Id = 3, Title = "Headphones" }
                     };
                     context.Categories.AddRange(categories);
+                    await context.SaveChangesAsync();
                 }
 
                 if (!context.Products.Any())
@@ -81,6 +82,7 @@ namespace Infrastructure
                         new Product { Id = 5, Title = "Bose QuietComfort 35", Description = "Wireless noise-cancelling headphones", Price = 299, CategoryId = 3 }
                     };
                     context.Products.AddRange(products);
+                    await context.SaveChangesAsync();
                 }
 
 

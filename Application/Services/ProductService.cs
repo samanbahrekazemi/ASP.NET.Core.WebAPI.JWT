@@ -1,5 +1,6 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Services
 {
@@ -25,6 +26,11 @@ namespace Application.Services
         public IEnumerable<ProductDTO> GetAllProducts()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<ProductDTO>> GetAllProductsAsync()
+        {
+            return await _context.Products.Include(a => a.Category).Select(x=> new ProductDTO() { Title = x.Title, Price = x.Price, Category = x.Category.Title }).ToListAsync();
         }
 
         public ProductDTO GetProductById(int id)
