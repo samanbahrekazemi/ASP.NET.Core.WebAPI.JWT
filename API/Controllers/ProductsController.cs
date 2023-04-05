@@ -19,10 +19,7 @@ namespace API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetProductsAsync()
         {
-
-            // If the data is not in the cache, retrieve it from the database
             var products = await _productService.GetAllProductsAsync();
-
             return Ok(products);
         }
        
