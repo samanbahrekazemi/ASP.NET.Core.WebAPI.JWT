@@ -28,7 +28,7 @@ namespace Web.Controllers
                 return View(data);
             }
 
-            return View();
+            return View(new List<ProductDTO>());
         }
     }
 }

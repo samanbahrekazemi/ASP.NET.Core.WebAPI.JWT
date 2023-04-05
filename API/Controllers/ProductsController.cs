@@ -1,5 +1,8 @@
-﻿using Application.Interfaces;
+﻿using Application.DTOs;
+using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
 
 namespace API.Controllers
 {
@@ -8,7 +11,6 @@ namespace API.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
-
         public ProductsController(IProductService productService)
         {
             _productService = productService;
@@ -17,9 +19,12 @@ namespace API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetProductsAsync()
         {
-            return Ok(await _productService.GetAllProductsAsync());
-        }
 
+            // If the data is not in the cache, retrieve it from the database
+            var products = await _productService.GetAllProductsAsync();
+
+            return Ok(products);
+        }
        
     }
 }

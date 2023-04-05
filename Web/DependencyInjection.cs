@@ -4,7 +4,7 @@
     {
         services.AddControllersWithViews();
         services.AddHttpClient();
-
+        services.AddHealthChecks();
         return services;
     }
 }

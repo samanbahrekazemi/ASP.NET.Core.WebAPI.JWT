@@ -33,11 +33,8 @@ builder.Services.AddScoped<IApplicationDbContext>(provider => provider.GetServic
 
 builder.Services
     .AddApplication()
-    .AddInfrastructure(config);
-builder.Services.AddRouting(options =>
-{
-    options.LowercaseUrls = true;
-});
+    .AddInfrastructure(config)
+    .AddGlobals(config);
 
 var app = builder.Build();
 
@@ -58,13 +55,13 @@ if (app.Environment.IsDevelopment())
     await dataSeeder.SeedUserRolesAsync(roleManager, userManager);
     await dataSeeder.SeedProductsAsync(dbContext);
 }
-
-
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseCors("AllowAllOrigins");
 
 app.MapControllers();
 

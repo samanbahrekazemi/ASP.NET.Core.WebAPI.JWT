@@ -1,26 +1,32 @@
 ﻿@model IEnumerable<Application.DTOs.ProductDTO>
-
-<p>List of products.</p>
-<br />
-@if (Model.Any())
-{
-    <table class="table table-sm table-hover">
-        <thead>
-            <tr>
-                <td>Title</td>
-                <td>Price</td>
-                <td>Category</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Title</td>
-                    <td>@item.Price</td>
-                    <td>@item.Category</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+@{
+    ViewData["Title"] = "Products";
 }
+<div class="card">
+    <div class="card-body">
+        <p>List of products.</p>
+        <br />
+        @if (Model.Any())
+        {
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <td>Title</td>
+                        <td>Price</td>
+                        <td>Category</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td>@item.Price</td>
+                            <td>@item.Category</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
